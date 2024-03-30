@@ -8,7 +8,7 @@ def runPipeline(LLM_model, workbook):
     toExit, res_dict = fetchUserPrompt()
     if not toExit:
         # need to get rid of query later on!!
-        LLM_res = LLM_model.llmResponse(res_dict['user_prompt'], query=0)
+        LLM_res = LLM_model.llmResponse(res_dict['user_prompt'], query=3)
         LLM_res = clean_response(LLM_res)
         print('\n\nLLM RESPONSE : ', LLM_res)
 

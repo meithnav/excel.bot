@@ -25,5 +25,14 @@ prompts = [
                     """
 
     },
+    {
+        "user_prompt": " In the given table A1:B14 arrange the elements of the table in ascending order according to column A and rewrite the table FROM_SHEET data TO_SHEET data OUTPUT_LOCS D1 ",
+        "chat_gpt": "=SORT(data!A1:B14, 1, TRUE)"
+    },
+
+    {
+        "user_prompt": " In the given table A2:B14 compute the mean square error between the column A and B and label the column as `MSE` FROM_SHEET data TO_SHEET data OUTPUT_LOCS F2, F1 ",
+        "chat_gpt": "=SUMSQ(data!A2:A14-data!B2:B14)/COUNTA(data!A2:A14);$;%MSE"
+    }
 
 ]
