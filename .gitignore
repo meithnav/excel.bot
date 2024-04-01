@@ -1,3 +1,5 @@
 .env
 /progress
 /credentials
+sheets/
+*/__pycache__

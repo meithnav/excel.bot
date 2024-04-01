@@ -13,15 +13,19 @@ def testConnection(workbook):
     pass
 
 
-def connectToWorkbookViaAouth():
+def connectToWorkbookViaOAuth():
 
     # Print connection name...
 
     # fetch all worksheet names
     # sheets = list(map(lambda x: x.title, workbook.worksheets()))
     # print(sheets)
+    client = gspread.oauth(credentials_filename='./credentials/credentials2.json', authorized_user_filename='./credentials/authorized_user.json')
+    url = input("Enter the url of your google sheet:")
+    sheet_id = url.split('/d/')[1].split('/edit')[0]
+    workbook = client.open_by_key(sheet_id)
 
-    pass
+    return workbook, client
 
 
 def connectToWorkbookViaShare(sheet_id):
@@ -31,7 +35,7 @@ def connectToWorkbookViaShare(sheet_id):
     ]
 
     creds = Credentials.from_service_account_file(
-        "credentials/credentials.json", scopes=scopes)
+        "credentials/credentials2.json", scopes=scopes)
 
     # Aurthorize
     client = gspread.authorize(creds)
@@ -41,7 +45,7 @@ def connectToWorkbookViaShare(sheet_id):
 
     # ----TEST/PRINT CONNECTION----
     # testConnection(workbook)
-
+    
     return workbook, client
 
 

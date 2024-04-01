@@ -1,4 +1,4 @@
-from utils.gsheets import connectToWorkbookViaShare, updatePromptToSheet
+from utils.gsheets import connectToWorkbookViaShare, updatePromptToSheet, connectToWorkbookViaOAuth
 from utils.functions import fetchUserPrompt, clean_response
 from LLM.chatgpt import ChatGPT
 
@@ -8,7 +8,7 @@ def runPipeline(LLM_model, workbook):
     toExit, res_dict = fetchUserPrompt()
     if not toExit:
         # need to get rid of query later on!!
-        LLM_res = LLM_model.llmResponse(res_dict, query=-2)
+        LLM_res = LLM_model.llmResponse(res_dict, query=1)
         LLM_res = clean_response(LLM_res)
         print('\n\nLLM RESPONSE : ', LLM_res)
 
@@ -20,9 +20,10 @@ def runPipeline(LLM_model, workbook):
 def main():
 
     # ID of google sheet -- NEED to automate this!!
-    sheet_id = "1XiJIWkql-xGXdRy8fgy8OB3OTnj6ypxRBVAfR-5M_DU"
+    # sheet_id = "1XiJIWkql-xGXdRy8fgy8OB3OTnj6ypxRBVAfR-5M_DU"
 
-    workbook, client = connectToWorkbookViaShare(sheet_id)
+    # workbook, client = connectToWorkbookViaShare(sheet_id)
+    workbook, client = connectToWorkbookViaOAuth()
     LLM_model = ChatGPT()
 
     toExit = False
